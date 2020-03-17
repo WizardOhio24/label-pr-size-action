@@ -19,9 +19,9 @@ try{
   });
 
   num_changes = files["changes"]
-  console.log(core.getInput("size-label-colour"))
-  for (sizelabel in core.getInput("size-label-colour")){
-    if(num_changes < sizelabel[0]){
+  console.log(core.getInput("size-label-colour")[1][0])
+  for (sizelabel of core.getInput("size-label-colour")){
+    if(num_changes < Number(sizelabel[0])){
       console.log("Added "+sizelabel[1])
       octokit.issues.createLabel({
         ...github.context.repo,
