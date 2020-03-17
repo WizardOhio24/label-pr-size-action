@@ -19,8 +19,8 @@ async function action(){
       pull_number: pr.number
     });
 
-    num_changes = files["changes"]
-    console.log(files.toString())
+    num_changes = files["data"][0]["changes"]
+    console.log(JSON.stringify(files["data"]))
     var label_arr = core.getInput("size-label-colour")
     //console.log(label_arr)
     console.log(("1, 2, 3, 4, 5".split(", ")).toString())
