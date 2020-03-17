@@ -49,9 +49,19 @@ async function action(){
         }).catch(err => {
           console.log(JSON.stringify(err))
         }).then(ok => {
-          console.log(JSON.stringify(cl))
+          console.log(JSON.stringify(ok))
+          console.log("Created Label")
         })
-        console.log("Created Label")
+
+        var cl = await octokit.issues.addLabels({
+          ...github.context.repo,
+          labels: sizelabel[1]
+        }).catch(err => {
+          console.log(JSON.stringify(err))
+        }).then(ok => {
+          console.log("Added Label")
+        })
+
 
         break
       }
