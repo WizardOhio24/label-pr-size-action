@@ -19,13 +19,24 @@ try{
   });
 
   num_changes = files["changes"]
-  var label_arr = core.getInput("size-label-colour").split(" | ")
-  label_arr.foreach(arr => {arr.split(", "); arr[0] = Number(arr[0])})
+  var label_arr = core.getInput("size-label-colour")
+  //console.log(label_arr)
+  console.log(("1, 2, 3, 4, 5".split(", ")).toString())
 
-  console.log(label_arr.toString())
+  label_arr = label_arr.toString().split(" | ")
+  console.log(label_arr[0])
+  label_arr.forEach(function(arr, index){
+    label_arr[index] = label_arr[index].split(", ")
+    console.log(label_arr[index][0].toString())
+    label_arr[index][0] = Number(label_arr[index][0])
+  })
+
+  console.log(label_arr[0][1])
+  console.log("Split2")
   for (sizelabel of label_arr){
+    console.log(sizelabel[1])
     if(num_changes < Number(sizelabel[0])){
-      console.log("Added "+sizelabel[1])
+      //console.log("Added "+sizelabel[1])
       octokit.issues.createLabel({
         ...github.context.repo,
         pull_number: pr.number,
@@ -38,5 +49,7 @@ try{
     }
   }
 }catch(error){
-   core.setFailed(error);
+   //console.log(error.message)
+   core.setFailed(error.message)
+   //core.setFailed(error.message);
 }
