@@ -1,7 +1,7 @@
 const core = require('@actions/core');
 const github = require('@actions/github');
 
-function action(){
+try{
 
   const GITHUB_TOKEN = process.env.GITHUB_TOKEN
   const octokit = new github.GitHub(GITHUB_TOKEN)
@@ -33,7 +33,6 @@ function action(){
       break
     }
   }
+}catch(error){
+   core.setFailed(error.message);
 }
-
-
-action()
