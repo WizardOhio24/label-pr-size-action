@@ -3,7 +3,8 @@ const github = require('@actions/github');
 
 try{
 
-  const GITHUB_TOKEN = process.env.GITHUB_TOKEN
+  console.log("Get Github token")
+  const GITHUB_TOKEN = core.getInput("GITHUB_TOKEN")//process.env.GITHUB_TOKEN
   const octokit = new github.GitHub(GITHUB_TOKEN)
 
   const pr = github.context.payload.pull_request
@@ -11,7 +12,7 @@ try{
   if(!pr){
     return // This should not happen if things are set up correctly
   }
-
+  console.log("Get files changed")
   files = octokit.pulls.listFiles({
     ...github.context.repo,
     pull_number: pr.number
@@ -34,5 +35,5 @@ try{
     }
   }
 }catch(error){
-   core.setFailed(error.message);
+   core.setFailed(error);
 }
