@@ -13,7 +13,7 @@ try{
     return // This should not happen if things are set up correctly
   }
   console.log("Get files changed")
-  files = octokit.pulls.listFiles({
+  files = await octokit.pulls.listFiles({
     ...github.context.repo,
     pull_number: pr.number
   });
