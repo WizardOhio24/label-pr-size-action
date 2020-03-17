@@ -34,3 +34,6 @@ function action(){
     }
   }
 }
+
+
+action()
