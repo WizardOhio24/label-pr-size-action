@@ -1,0 +1,17 @@
+name: 'Add Size Label to PR'
+description: 'Add different labels depending on the number of changes of the PR'
+branding:
+  icon: 'tag'
+  color: 'orange'
+inputs:
+    GITHUB_TOKEN:
+      description: 'github token for adding the label to the PR'
+      required: true
+      default: ''
+    size-label-colour:
+      description: 'A list of size,label,colour(Hex) where the label will be applied to the size if it is in between the two surrounding it, i.e greater than the one before it and less than it'
+      required: true
+      default: '[[100, very small, ffffff] , [500, small, ffffff], [2000, medium, ffffff], [5000, large, ffffff]]'
+runs:
+  using: 'node12'
+  main: 'index.js'
