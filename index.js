@@ -46,16 +46,17 @@ async function action(){
           name: sizelabel[1],
           color: sizelabel[2] || "cb7119", // tiger orange default
           // description: //
-        }).catch(err => {
-          console.log(JSON.stringify(err))
         }).then(ok => {
           console.log(JSON.stringify(ok))
           console.log("Created Label")
+        }).catch(err => {
+          console.log(JSON.stringify(err))
         })
 
         var cl = await octokit.issues.addLabels({
           ...github.context.repo,
-          labels: sizelabel[1]
+          issue_number: pr.number,
+          labels: [sizelabel[1]]
         }).catch(err => {
           console.log(JSON.stringify(err))
         }).then(ok => {
