@@ -12,22 +12,22 @@ inputs:
       description: 'A list of size,label,colour(Hex) where the label will be applied to the size if it is in between the two surrounding it, i.e greater than the one before it and less than it'
       required: false
       default:
-        -
-          - 100
-          - "very small"
-          - "ffffff"
-        -
-          - 500
-          - "small"
-          - "ffffff"
-        -
-          - 2000
-          - "medium"
-          - "ffffff"
-        -
-          - 5000
-          - "large"
-          - "ffffff"
+          -
+            - 100
+            - "very small"
+            - "ffffff"
+          -
+            - 500
+            - "small"
+            - "ffffff"
+          -
+            - 2000
+            - "medium"
+            - "ffffff"
+          -
+            - 5000
+            - "large"
+            - "ffffff"
 
 runs:
   using: 'node12'
