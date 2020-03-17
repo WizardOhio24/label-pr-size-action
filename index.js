@@ -43,7 +43,7 @@ async function action(){
         var cl = await octokit.issues.createLabel({
           ...github.context.repo,
           pull_number: pr.number,
-          name: [sizelabel[1]],
+          name: sizelabel[1],
           color: sizelabel[2] || "cb7119", // tiger orange default
           // description: //
         }).catch(err => {
