@@ -40,15 +40,19 @@ async function action(){
       console.log(num_changes)
       if(num_changes < Number(sizelabel[0])){
         console.log("Added "+sizelabel[1])
-        var cl = octokit.issues.createLabel({
+        var cl = await octokit.issues.createLabel({
           ...github.context.repo,
           pull_number: pr.number,
           name: [sizelabel[1]],
-          colour: sizelabel[2] || "cb7119", // tiger orange default
+          color: sizelabel[2] || "cb7119", // tiger orange default
           // description: //
+        }).catch(err => {
+          console.log(JSON.stringify(err))
+        }).then(ok => {
+          console.log(JSON.stringify(cl))
         })
         console.log("Created Label")
-        console.log(JSON.stringify(cl))
+
         break
       }
     }
