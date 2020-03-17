@@ -19,9 +19,9 @@ try{
   });
 
   num_changes = files["changes"]
-  console.log(core.getInput("size-label-colour"))
-  label_arr = core.getInput("size-label-colour").split(" | ")
-  label_arr.foreach(arr => {arr.split(", "); arr[0] = Number(arr[0])})
+  console.log(core.getInput("size-label-colour").split(" | "))
+  var label_arr = core.getInput("size-label-colour").split(" | ")
+  var label_arr.foreach(arr => {arr.split(", "); arr[0] = Number(arr[0])})
 
   console.log(label_arr)
   for (sizelabel of label_arr){
