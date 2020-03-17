@@ -23,9 +23,9 @@ function action(){
     if(num_changes < sizelabel[0]){
       octokit.issues.createLabel({
         ...github.context.repo,
-        pull_number: pr.number
-        name: [sizelabel[1]]
-        colour: sizelabel[2] || "cb7119" // tiger orange default
+        pull_number: pr.number,
+        name: [sizelabel[1]],
+        colour: sizelabel[2] || "cb7119", // tiger orange default
         // description: //
       })
 
