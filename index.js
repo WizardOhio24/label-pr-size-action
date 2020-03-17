@@ -19,6 +19,7 @@ try{
   });
 
   num_changes = files["changes"]
+  console.log(files.toString())
   var label_arr = core.getInput("size-label-colour")
   //console.log(label_arr)
   console.log(("1, 2, 3, 4, 5".split(", ")).toString())
@@ -35,8 +36,9 @@ try{
   console.log("Split2")
   for (sizelabel of label_arr){
     console.log(sizelabel[1])
+    console.log(num_changes)
     if(num_changes < Number(sizelabel[0])){
-      //console.log("Added "+sizelabel[1])
+      console.log("Added "+sizelabel[1])
       octokit.issues.createLabel({
         ...github.context.repo,
         pull_number: pr.number,
@@ -44,7 +46,7 @@ try{
         colour: sizelabel[2] || "cb7119", // tiger orange default
         // description: //
       })
-
+      console.log("Created Label")
       break
     }
   }
