@@ -22,10 +22,9 @@ async function action(){
     num_changes = files["data"][0]["changes"] // lines changed
     //console.log(JSON.stringify(files["data"]))
     var label_arr = core.getInput("size-label-colour")
-    console.log(("1, 2, 3, 4, 5".split(", ")).toString())
 
+    // Turn the custom input string into a JS array
     label_arr = label_arr.toString().split(" | ")
-    console.log(label_arr[0])
     label_arr.forEach(function(arr, index){
       label_arr[index] = label_arr[index].split(", ")
       label_arr[index][0] = Number(label_arr[index][0])
@@ -36,8 +35,9 @@ async function action(){
     // Note this will error if the label doesn't exist,
     // that doesn't matter
 
-    var existingLabels = await octokit.issues.deleteLabel({
+    var existingLabels = await octokit.issues.removeLabel({
       ...github.context.repo,
+      issue_number: pr.number,
       name: sizelabel[1]
     }).catch(err => {
       // It can't delete something which isn't there
