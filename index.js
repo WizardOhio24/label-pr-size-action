@@ -19,25 +19,33 @@ async function action(){
       pull_number: pr.number
     });
 
-    num_changes = files["data"][0]["changes"]
-    console.log(JSON.stringify(files["data"]))
+    num_changes = files["data"][0]["changes"] // lines changed
+    //console.log(JSON.stringify(files["data"]))
     var label_arr = core.getInput("size-label-colour")
-    //console.log(label_arr)
     console.log(("1, 2, 3, 4, 5".split(", ")).toString())
 
     label_arr = label_arr.toString().split(" | ")
     console.log(label_arr[0])
     label_arr.forEach(function(arr, index){
       label_arr[index] = label_arr[index].split(", ")
-      console.log(label_arr[index][0].toString())
       label_arr[index][0] = Number(label_arr[index][0])
     })
-
-    console.log(label_arr[0][1])
-    console.log("Split2")
     for (sizelabel of label_arr){
-      console.log(sizelabel[1])
-      console.log(num_changes)
+    // If a label is already on the PR which is on this label list,
+    // remove it, it will be readded
+    // Note this will error if the label doesn't exist,
+    // that doesn't matter
+
+    var existingLabels = await octokit.issues.deleteLabel({
+      ...github.context.repo,
+      name: sizelabel[1]
+    }).catch(err => {
+      // It can't delete something which isn't there
+    })
+  }
+
+    for (sizelabel of label_arr){
+
       if(num_changes < Number(sizelabel[0])){
         console.log("Added "+sizelabel[1])
         var cl = await octokit.issues.createLabel({
@@ -50,17 +58,22 @@ async function action(){
           console.log(JSON.stringify(ok))
           console.log("Created Label")
         }).catch(err => {
+          // If this is saying it's because the label already existed,
+          // that doesn't matter
           console.log(JSON.stringify(err))
+
+          // If the error is that it already exists, then update it
+
         })
 
         var cl = await octokit.issues.addLabels({
           ...github.context.repo,
           issue_number: pr.number,
           labels: [sizelabel[1]]
-        }).catch(err => {
-          console.log(JSON.stringify(err))
         }).then(ok => {
           console.log("Added Label")
+        }).catch(err => {
+          console.log(JSON.stringify(err))
         })
 
 

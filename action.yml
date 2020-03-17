@@ -11,7 +11,7 @@ inputs:
     size-label-colour:
       description: 'A list of size,label,colour(Hex) where the label will be applied to the size if it is in between the two surrounding it, i.e greater than the one before it and less than it'
       required: false
-      default: '100, very small, ffffff | 500, small, ffffff | 2000, medium, ffffff | 5000, large, ffffff'
+      default: '10, very small, ffaf65 | 100, small, ff9e58 | 500, medium, ff9654 | 2000, large, ff905d'
 
 runs:
   using: 'node12'
