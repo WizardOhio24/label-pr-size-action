@@ -60,10 +60,9 @@ async function action(){
         }).catch(err => {
           // If this is saying it's because the label already existed,
           // that doesn't matter
+          if(!err.status == 422){
           console.log(JSON.stringify(err))
-
-          // If the error is that it already exists, then update it
-
+        }
         })
 
         var cl = await octokit.issues.addLabels({
@@ -76,14 +75,11 @@ async function action(){
           console.log(JSON.stringify(err))
         })
 
-
         break
       }
     }
   }catch(error){
-     //console.log(error.message)
      core.setFailed(error.message)
-     //core.setFailed(error.message);
   }
 }
 
