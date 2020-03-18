@@ -21,7 +21,7 @@ async function action(){
 
     num_changes = files["data"][0]["changes"] // lines changed
     //console.log(JSON.stringify(files["data"]))
-    var label_arr = core.getInput("size-label-colour")
+    var label_arr = core.getInput("size-label-color")
 
     // Turn the custom input string into a JS array
     label_arr = label_arr.toString().split(" | ")
