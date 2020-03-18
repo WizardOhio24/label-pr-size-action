@@ -29,7 +29,7 @@ with:
   size-label-color: '10, very small, ffaf65 | 100, small, ff9e58 | 500, medium, ff9654 | 2000, large, ff905d'
 ```
 
-Here, there will only be one label shown, that is: very small < 9 < small < 99 < medium < 499 < large < 2000.  To add a new label, simple use the syntax shown:
+Here, there will only be one label shown, that is: very small < 10 <= small < 100 <= medium < 500 <= large < 2000.  To add a new label, simple use the syntax shown:
 ```
 | filesChanged, labelToApply, ColorOfLabel(Hex) |
 ```
