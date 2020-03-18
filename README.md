@@ -7,7 +7,7 @@ To use this action, put this in your Github Workflows file:
 name: Add Size Label to PR
 # This workflow is triggered every time a PR is changed(opened/closed or code modifed).
 on:
-  pull_request:
+  pull_request
 
 jobs:
   build:
@@ -26,10 +26,10 @@ You can also include a custom option for the number of edits below which a label
 ```
 with:
   ...
-  size-label-color: '10, very small, ffaf65 | 100, small, ff9e58 | 500, medium, ff9654 | 2000, large, ff905d'
+  size-label-color: '10, very small, ffaf65 | 100, small, ff9e58 | 500, medium, ff9654 | 2000, large, ff905d | 100000, massive, ff905d'
 ```
 
-Here, there will only be one label shown, that is: very small < 10 <= small < 100 <= medium < 500 <= large < 2000.  To add a new label, simple use the syntax shown:
+Here, there will only be one label shown, that is: very small < 10 <= small < 100 <= medium < 500 <= large < 2000 <= massive < 100000.  To add a new label, simple use the syntax shown:
 ```
 | filesChanged, labelToApply, ColorOfLabel(Hex) |
 ```
